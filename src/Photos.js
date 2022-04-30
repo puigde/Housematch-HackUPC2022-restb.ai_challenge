@@ -12,10 +12,16 @@ function Photos({name, imgs}) {
   return (
     <div className='card' style={{backgroundImage: `url(${imgs[imgIndex]})`, backgroundColor: 'black'}}>
       <div className='controls-container'>
-        <IconButton onClick={() => setImgIndex(imgIndex - 1)}>
+        <IconButton onClick={() => {
+          setImgIndex(imgIndex - 1);
+          if (imgIndex === -1) setImgIndex(imgs.length - 1);
+        }}>
           <ChevronLeftIcon fontSize="large" />
         </IconButton>
-        <IconButton onClick={() => setImgIndex(imgIndex + 1)}>
+        <IconButton onClick={() => {
+          setImgIndex(imgIndex + 1);
+          if (imgIndex === imgs.length) setImgIndex(0);
+        }}>
           <ChevronRightIcon fontSize="large" />
         </IconButton>
       </div>
