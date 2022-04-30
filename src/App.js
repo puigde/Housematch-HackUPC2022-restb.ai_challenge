@@ -1,5 +1,5 @@
 import React from 'react';
-import {useState, useRef, useMemo} from 'react';
+import {useState, useRef, useMemo, useEffect} from 'react';
 
 import './App.css';
 
@@ -8,21 +8,23 @@ import Cards from './Cards.js';
 import Buttons from './Buttons.js';
 
 
-function App() {
-  const [db] = useState([
-    {
-      name: 'Pedralbes house',
-      imgurl: 'https://img3.idealista.com/blur/WEB_DETAIL-XL-L/0/id.pro.es.image.master/17/5d/46/974096135.jpg',
-    },
-    {
-      name: 'Calle d\'Europa, 15 flat',
-      imgurl: 'https://img3.idealista.com/blur/WEB_DETAIL-XL-L/0/id.pro.es.image.master/2c/16/61/878498755.jpg',
-    },
-  ]);
+const SERVER_URL = 'http://127.0.0.1:5000';
 
-  const [currentIndex, setCurrentIndex] = useState(db.length - 1);
-  const [lastDirection, setLastDirection] = useState();
+function App() {
+  const [db, setDb] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
   const currentIndexRef = useRef(currentIndex);
+
+  useEffect(() => {
+    const getData = async () => {
+      const res = await fetch(SERVER_URL + '/list');
+      const data = await res.json();
+      console.log(data);
+      setDb(data);
+      setCurrentIndex(data.length - 1);
+    };
+    getData();
+  }, []);
 
   const childRefs = useMemo(
     () =>
@@ -41,14 +43,26 @@ function App() {
 
   const canSwipe = currentIndex >= 0;
 
+  const sendSwipe = async (swipe, index) => {
+    console.log(swipe, index);
+    await fetch(SERVER_URL + '/decision', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        'swipe': swipe,
+        'index': index,
+      }),
+    });
+  };
+
   // set last direction and decrease current index
   const swiped = (direction, nameToDelete, index) => {
-    setLastDirection(direction);
+    // console.log(direction, nameToDelete, index);
+    sendSwipe(direction, db.length - 1 - index);
     updateCurrentIndex(index - 1);
   };
 
   const outOfFrame = (name, idx) => {
-    console.log(`${name} (${idx}) left the screen!`, currentIndexRef.current);
     // handle the case in which go back is pressed before card goes outOfFrame
     currentIndexRef.current >= idx && childRefs[idx].current.restoreCard();
   };
