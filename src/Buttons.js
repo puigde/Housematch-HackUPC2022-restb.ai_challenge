@@ -7,16 +7,16 @@ import ReplayIcon from '@mui/icons-material/Replay';
 
 import './Buttons.css';
 
-function Buttons() {
+function Buttons({swipe, goBack}) {
   return (
     <div className="buttons">
-      <IconButton className="no-button">
+      <IconButton className="no-button" onClick={() => swipe('left')}>
         <CloseIcon fontSize="large" />
       </IconButton>
-      <IconButton className="undo-button">
+      <IconButton className="undo-button" onClick={() => goBack()}>
         <ReplayIcon fontSize="large" />
       </IconButton>
-      <IconButton className="yes-button">
+      <IconButton className="yes-button" onClick={() => swipe('right')}>
         <FavoriteIcon fontSize="large" />
       </IconButton>
     </div>
