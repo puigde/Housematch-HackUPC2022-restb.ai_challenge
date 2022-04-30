@@ -1,0 +1,28 @@
+.buttons {
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  margin-top: 65vh;
+}
+
+.buttons .MuiIconButton-root {
+  background-color: white;
+  box-shadow: 0 10px 50px 0 #9e9e9e;
+}
+
+.no-button, .undo-button, .yes-button {
+  margin-right: 50px !important;
+  margin-left: 50px !important;
+}
+
+.no-button {
+  color: #d50000 !important;
+}
+
+.undo-button {
+  color: #f57f17 !important;
+}
+
+.yes-button {
+  color: #388e3c !important;
+}
