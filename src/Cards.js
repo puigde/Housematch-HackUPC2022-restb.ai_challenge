@@ -4,7 +4,7 @@ import './Cards.css';
 import TinderCard from 'react-tinder-card';
 
 function Cards() {
-  const [properties, setProperties] = useState([
+  const [properties] = useState([
     {
       name: 'Pedralbes house',
       imgurl: 'https://img3.idealista.com/blur/WEB_DETAIL-XL-L/0/id.pro.es.image.master/17/5d/46/974096135.jpg',
