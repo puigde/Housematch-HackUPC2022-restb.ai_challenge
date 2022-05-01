@@ -9,7 +9,7 @@ function Cards({properties, childRefs, swiped, outOfFrame}) {
       <div className='cards'>
         <div className='cards-container'>
           {properties.map((property, index) => (
-            <TinderCard className='tinder-card' key={property.name}
+            <TinderCard className='tinder-card' key={index}
               ref={childRefs[index]}
               onSwipe={(dir) => swiped(dir, property.name, index)}
               onCardLeftScreen={() => outOfFrame(property.name, index)}

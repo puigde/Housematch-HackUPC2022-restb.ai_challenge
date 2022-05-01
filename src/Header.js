@@ -1,4 +1,5 @@
-import PersonIcon from '@mui/icons-material/Person';
+// import PersonIcon from '@mui/icons-material/Person';
+import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
 import StyleIcon from '@mui/icons-material/Style';
 
@@ -8,11 +9,11 @@ import './Header.css';
 
 import Logo from './logo.png';
 
-function Header({page, setPage}) {
+function Header({serverUrl, page, setPage}) {
   return (
     <div className="header">
-      <IconButton>
-        <PersonIcon className="header-icon" fontSize="large"/>
+      <IconButton onClick={() => fetch(serverUrl + '/train')}>
+        <FitnessCenterIcon className="header-icon" fontSize="large"/>
       </IconButton>
 
       <img src={Logo}

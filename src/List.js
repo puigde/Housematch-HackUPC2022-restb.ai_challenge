@@ -20,12 +20,14 @@ function List({serverUrl}) {
 
   const imgList = ordering.map((img, index) => (
     <Grid item xs={6} key={index}>
-      <img src={img.src} className="list-img" alt="" />
+      <a href={img.url}>
+        <img src={img.src} className="list-img" alt="" />
+      </a>
     </Grid>
   ));
   console.log(imgList);
 
-  return loading ? <>Loading</> : (
+  return loading ? <>Retraining the model...</> : (
     <Grid container>
       {imgList}
     </Grid>

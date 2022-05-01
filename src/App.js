@@ -11,7 +11,7 @@ function App() {
 
   return (
     <>
-      <Header page={page} setPage={setPage} />
+      <Header serverUrl={SERVER_URL} page={page} setPage={setPage} />
       {page === 'swipe' ?
         <Swipe serverUrl={SERVER_URL} /> :
         <List serverUrl={SERVER_URL} />}
