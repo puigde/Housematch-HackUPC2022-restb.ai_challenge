@@ -1,5 +1,6 @@
 import PersonIcon from '@mui/icons-material/Person';
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork';
+import StyleIcon from '@mui/icons-material/Style';
 
 import IconButton from '@mui/material/IconButton';
 
@@ -7,7 +8,7 @@ import './Header.css';
 
 import Logo from './logo.png';
 
-function Header() {
+function Header({page, setPage}) {
   return (
     <div className="header">
       <IconButton>
@@ -18,8 +19,16 @@ function Header() {
         alt=""
         className="header-logo" />
 
-      <IconButton>
-        <MapsHomeWorkIcon className="header-icon" fontSize="large"/>
+      <IconButton onClick={() => {
+        if (page === 'swipe') {
+          setPage('list');
+        } else {
+          setPage('swipe');
+        }
+      }}>
+        {page === 'swipe' ?
+          <MapsHomeWorkIcon className="header-icon" fontSize="large"/> :
+          <StyleIcon className="header-icon" fontSize="large"/>}
       </IconButton>
     </div>
   );
