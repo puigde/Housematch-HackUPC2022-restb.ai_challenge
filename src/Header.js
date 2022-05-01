@@ -5,6 +5,8 @@ import IconButton from '@mui/material/IconButton';
 
 import './Header.css';
 
+import Logo from './logo.png';
+
 function Header() {
   return (
     <div className="header">
@@ -12,7 +14,7 @@ function Header() {
         <PersonIcon className="header-icon" fontSize="large"/>
       </IconButton>
 
-      <img src="https://seeklogo.com/images/T/tinder-logo-FAAE852EC0-seeklogo.com.png"
+      <img src={Logo}
         alt=""
         className="header-logo" />
 

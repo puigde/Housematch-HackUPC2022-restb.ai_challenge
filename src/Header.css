@@ -13,3 +13,7 @@
 .header-icon {
   padding: 20px;
 }
+
+.header .MuiIconButton-root {
+  color: #4c276b !important;
+}
